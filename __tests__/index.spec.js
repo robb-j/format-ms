@@ -22,7 +22,12 @@ describe('#formatMilliseconds', () => {
   })
   
   it('should use long units with pluralisation', async () => {
-    let msg = formatMilliseconds(961000, 'long')
+    let msg = formatMilliseconds(961000, { units: 'long' })
     expect(msg).toBe('16 minutes 1 second')
+  })
+  
+  it('should respect ignored units', async () => {
+    let msg = formatMilliseconds(123456890, { ignore: [ 'millisecond' ] })
+    expect(msg).toBe('1d 34h 17m 36s')
   })
 })

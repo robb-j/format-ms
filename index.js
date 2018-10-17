@@ -58,25 +58,28 @@ const parseMilliseconds = ms => {
 }
 
 // Format a millisecond time into a human readable string
-const formatMilliseconds = (ms, units = 'short') => {
+const formatMilliseconds = (ms, { units = 'short', ignore = [] } = {}) => {
   let inPast = ms < 0
   ms = Math.abs(ms)
   
-  let {
-    years, weeks, days, hours, minutes, seconds, milliseconds
-  } = parseMilliseconds(ms)
+  let comps = parseMilliseconds(ms)
   
   let unitSet = unitNames[units]
   
   let parts = []
   
-  if (years) parts.push(unitify(years, unitSet, 'year'))
-  if (weeks) parts.push(unitify(weeks, unitSet, 'week'))
-  if (days) parts.push(unitify(days, unitSet, 'day'))
-  if (hours) parts.push(unitify(hours, unitSet, 'hour'))
-  if (minutes) parts.push(unitify(minutes, unitSet, 'minute'))
-  if (seconds) parts.push(unitify(seconds, unitSet, 'second'))
-  if (milliseconds) parts.push(unitify(milliseconds, unitSet, 'millisecond'))
+  const addPartIfNonZero = (arr, key, unitName) => {
+    if (comps[key] <= 0 || ignore.includes(unitName)) return
+    arr.push(unitify(comps[key], unitSet, unitName))
+  }
+  
+  addPartIfNonZero(parts, 'years', 'year')
+  addPartIfNonZero(parts, 'weeks', 'week')
+  addPartIfNonZero(parts, 'days', 'day')
+  addPartIfNonZero(parts, 'hours', 'hour')
+  addPartIfNonZero(parts, 'minutes', 'minute')
+  addPartIfNonZero(parts, 'seconds', 'second')
+  addPartIfNonZero(parts, 'milliseconds', 'millisecond')
   
   if (inPast) parts.push('ago')
   

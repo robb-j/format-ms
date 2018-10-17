@@ -11,8 +11,11 @@ console.log(formatMilliseconds(1000000))
 console.log(formatMilliseconds(-445500))
 // output: '7m 25s 500ms ago'
 
-console.log(formatMilliseconds(961000, 'long'))
+console.log(formatMilliseconds(961000, { units: 'long' }))
 // output: '16 minutes 1 second'
+
+console.log(formatMilliseconds(445500, { ignore: [ 'millisecond' ] }))
+// output: '7m 25s'
 
 console.log(parseMilliseconds(987654321000))
 // output: {
