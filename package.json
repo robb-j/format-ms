@@ -1,6 +1,6 @@
 {
   "name": "format-ms",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Format milliseconds into a human readable message by converting units",
   "main": "index.js",
   "scripts": {
