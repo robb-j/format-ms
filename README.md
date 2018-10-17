@@ -12,7 +12,7 @@ console.log(formatMilliseconds(-445500))
 // output: '7m 25s 500ms ago'
 
 console.log(formatMilliseconds(961000, 'long'))
-// output: 16 minutes 1 second
+// output: '16 minutes 1 second'
 
 console.log(parseMilliseconds(987654321000))
 // output: {
