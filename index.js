@@ -29,7 +29,7 @@ const millisecondTo = {
   hour: 1 / (1000 * 60 * 60),
   day: 1 / (1000 * 60 * 60 * 24),
   week: 1 / (1000 * 60 * 60 * 24 * 7),
-  year: 1 / (1000 * 60 * 60 * 24 * 7 * 365.25)
+  year: 1 / (1000 * 60 * 60 * 24 * 7 * 52)
 }
 
 // Util to add a unit name w/ pluralisation to value
@@ -46,10 +46,10 @@ const parseMilliseconds = ms => {
   let totalWeeks = Math.floor(ms * millisecondTo.week)
   let totalYears = Math.floor(ms * millisecondTo.year)
   
-  let years = totalYears % 7
-  let weeks = totalWeeks % 7
-  let days = totalDays % 24
-  let hours = totalHours % 60
+  let years = totalYears
+  let weeks = totalWeeks % 52
+  let days = totalDays % 7
+  let hours = totalHours % 24
   let minutes = totalMinutes % 60
   let seconds = totalSeconds % 60
   let milliseconds = ms % 1000

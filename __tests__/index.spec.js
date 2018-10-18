@@ -8,12 +8,12 @@ describe('#formatMilliseconds', () => {
   
   it('should format the medium times', async () => {
     let msg = formatMilliseconds(123456890)
-    expect(msg).toBe('1d 34h 17m 36s 890ms')
+    expect(msg).toBe('1d 10h 17m 36s 890ms')
   })
   
   it('should format the large times', async () => {
     let msg = formatMilliseconds(987654321000)
-    expect(msg).toBe('4y 2w 7d 28h 25m 21s')
+    expect(msg).toBe('31y 21w 4h 25m 21s')
   })
   
   it('should format negative times', async () => {
@@ -28,6 +28,35 @@ describe('#formatMilliseconds', () => {
   
   it('should respect ignored units', async () => {
     let msg = formatMilliseconds(123456890, { ignore: [ 'millisecond' ] })
-    expect(msg).toBe('1d 34h 17m 36s')
+    expect(msg).toBe('1d 10h 17m 36s')
   })
 })
+
+// 1000000 ms
+//   millis:  (1000000) % 1000 = 0ms
+//   seconds: (1000000/1000) % 60  = 40s
+//   minutes: (1000000/1000/60) % 60 ~= 16m
+//   hours:   (1000000/1000/60/60) % 24 ~= 0h
+//   days:    (1000000/1000/60/60/24) % 7 ~= 0d
+
+// 123456890 ms
+//   millis:  (123456890) % 1000 = 890ms
+//   seconds: (123456890/1000) % 60  = 36s
+//   minutes: (123456890/1000/60) % 60 ~= 17m
+//   hours:   (123456890/1000/60/60) % 24 ~= 10h
+//   days:    (123456890/1000/60/60/24) % 7 ~= 1d
+
+// 987654321000 ms
+//   millis:  (987654321000) % 1000 = 0ms
+//   seconds: (987654321000/1000) % 60  = 21s
+//   minutes: (987654321000/1000/60) % 60 ~= 25m
+//   hours:   (987654321000/1000/60/60) % 24 ~= 4h
+//   days:    (987654321000/1000/60/60/24) % 7 ~= 0d
+//   weeks:   (987654321000/1000/60/60/24/7) % 52 ~= 21w
+//   years:   (987654321000/1000/60/60/24/7/52) ~= 31y
+
+// 961000 ms
+//   millis:  (961000) % 1000 = 0ms
+//   seconds: (961000/1000) % 60  = 1s
+//   minutes: (961000/1000/60) % 60 ~= 16m
+//   hours:   (961000/1000/60/60) % 24 ~= 0h
