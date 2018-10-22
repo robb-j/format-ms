@@ -22,10 +22,10 @@ console.log(formatMilliseconds(445500, { ignore: [ 'millisecond' ] }))
 
 console.log(parseMilliseconds(987654321000))
 // output: {
-//   years: 4,
-//   weeks: 2,
-//   days: 7,
-//   hours: 28,
+//   years: 31,
+//   weeks: 21,
+//   days: 0,
+//   hours: 4,
 //   minutes: 25,
 //   seconds: 21,
 //   milliseconds: 0 }
