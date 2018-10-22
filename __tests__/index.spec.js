@@ -30,6 +30,11 @@ describe('#formatMilliseconds', () => {
     let msg = formatMilliseconds(123456890, { ignore: [ 'millisecond' ] })
     expect(msg).toBe('1d 10h 17m 36s')
   })
+  
+  it('should format largest only', async () => {
+    let msg = formatMilliseconds(123456890, { largestOnly: true })
+    expect(msg).toBe('1d')
+  })
 })
 
 // 1000000 ms

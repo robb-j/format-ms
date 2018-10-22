@@ -58,7 +58,10 @@ const parseMilliseconds = ms => {
 }
 
 // Format a millisecond time into a human readable string
-const formatMilliseconds = (ms, { units = 'short', ignore = [] } = {}) => {
+const formatMilliseconds = (
+  ms,
+  { units = 'short', ignore = [], largestOnly = false } = {}
+) => {
   let inPast = ms < 0
   ms = Math.abs(ms)
   
@@ -70,6 +73,7 @@ const formatMilliseconds = (ms, { units = 'short', ignore = [] } = {}) => {
   
   const addPartIfNonZero = (arr, key, unitName) => {
     if (comps[key] <= 0 || ignore.includes(unitName)) return
+    if (largestOnly && parts.length > 0) return
     arr.push(unitify(comps[key], unitSet, unitName))
   }
   
