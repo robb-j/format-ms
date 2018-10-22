@@ -14,6 +14,9 @@ console.log(formatMilliseconds(-445500))
 console.log(formatMilliseconds(961000, { units: 'long' }))
 // output: '16 minutes 1 second'
 
+console.log(formatMilliseconds(-445500, { largestOnly: true }))
+// output: '7m ago'
+
 console.log(formatMilliseconds(445500, { ignore: [ 'millisecond' ] }))
 // output: '7m 25s'
 
