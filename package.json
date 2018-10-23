@@ -1,6 +1,6 @@
 {
   "name": "format-ms",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Format milliseconds into a human readable message by converting units",
   "main": "index.js",
   "scripts": {
@@ -12,14 +12,21 @@
   "author": "robb-j",
   "license": "ISC",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/robb-j/format-ms"
+    "type": "git",
+    "url": "https://github.com/robb-j/format-ms"
   },
   "homepage": "https://github.com/robb-j/format-ms#readme",
   "bugs": {
     "url": "https://github.com/robb-j/format-ms/issues"
   },
-  "keywords": [ "format", "milliseconds", "temporal", "time", "convert", "converter" ],
+  "keywords": [
+    "format",
+    "milliseconds",
+    "temporal",
+    "time",
+    "convert",
+    "converter"
+  ],
   "dependencies": {},
   "devDependencies": {
     "ajv": "^6.5.4",
