@@ -1,5 +1,7 @@
 # Format Milliseconds
 
+> You should really just use the [ms package](https://www.npmjs.com/package/ms)
+
 A utility function for converting milliseconds into a human readable message.
 
 ```js
